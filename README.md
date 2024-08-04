@@ -80,7 +80,7 @@ curl --location 'https://webhook.site/c3f13233-1ed4-429e-9649-8133b3b9c9cd' \
 --header 'x-ins-auth-key: INS.me1x9uMcyYGlhKKQVPoc.bO3j9aZwRTOcA2Ywo' \
 --data '{
   "to": "+905551111111",
-  "content": "Insider - Project"
+  "content": "example content"
 }'
 ```
 
