@@ -75,6 +75,6 @@ To set up and run the MessageWave application, configure the application.propert
 ### Webhook.site Configuration
 - This application uses webhook.site for the incoming requests. Please apply the following settings to your endpoint:
 
-![Webhook XHR Redirection](images/Webhook Redirect.png)
+![Webhook XHR Redirection](images/webhook_redirect.png)
 
-![Webhook Edit URL](images/Webhook Edit URL.png)
+![Webhook Edit URL](images/webhook_edit_url.png)
