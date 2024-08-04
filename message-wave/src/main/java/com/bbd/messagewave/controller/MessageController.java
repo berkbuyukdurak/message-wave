@@ -32,7 +32,7 @@ public class MessageController {
     @PostMapping("/send-message")
     @Operation(summary = "Create a message", description = "Creates a new message and records it in the database.")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Message created successfully",
+            @ApiResponse(responseCode = "201", description = "Message created successfully",
                     content = @Content(schema = @Schema(implementation = GenericApiResponse.class))),
             @ApiResponse(responseCode = "400", description = "Invalid request data",
                     content = @Content),
@@ -42,7 +42,7 @@ public class MessageController {
     public ResponseEntity<GenericApiResponse<SendMessageResponseDTO>> createMessage(@RequestBody SendMessageRequestDTO request) {
         try {
             SendMessageResponseDTO response = messageService.createMessage(request);
-            return GenericResponseHandler.successResponse(HttpStatus.OK, "Message created successfully", response);
+            return GenericResponseHandler.successResponse(HttpStatus.CREATED, "Message created successfully", response);
         } catch (Exception e) {
             return GenericResponseHandler.errorResponse(HttpStatus.INTERNAL_SERVER_ERROR, "Failed to create message: " + e.getMessage());
         }
