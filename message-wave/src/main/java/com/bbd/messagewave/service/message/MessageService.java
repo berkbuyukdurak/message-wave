@@ -1,9 +1,10 @@
-package com.bbd.messagewave.service;
+package com.bbd.messagewave.service.message;
 
 import com.bbd.messagewave.model.dto.message.response.GetAllMessagesResponseDTO;
 import com.bbd.messagewave.model.dto.message.response.GetAllSentMessagesResponseDTO;
 import com.bbd.messagewave.model.entity.Message;
 import com.bbd.messagewave.repository.MessageRepository;
+import com.bbd.messagewave.service.RedisService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
