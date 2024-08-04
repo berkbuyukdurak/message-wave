@@ -13,6 +13,12 @@
     <version>0.0.1-SNAPSHOT</version>
     <name>message-wave</name>
     <description>message-wave</description>
+    <properties>
+        <java.version>17</java.version> <!-- Updated Java version to 17 -->
+        <spring-modulith.version>1.2.1</spring-modulith.version>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
+    </properties>
     <url/>
     <licenses>
         <license/>
@@ -26,10 +32,6 @@
         <tag/>
         <url/>
     </scm>
-    <properties>
-        <java.version>21</java.version>
-        <spring-modulith.version>1.2.1</spring-modulith.version>
-    </properties>
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -187,6 +189,13 @@
                             <artifactId>lombok</artifactId>
                         </exclude>
                     </excludes>
+                </configuration>
+            </plugin>
+            <plugin>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.1</version>
+                <configuration>
+                    <release>17</release>
                 </configuration>
             </plugin>
         </plugins>
