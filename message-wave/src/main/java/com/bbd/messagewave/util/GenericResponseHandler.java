@@ -5,13 +5,14 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
 public class GenericResponseHandler {
-    public static ResponseEntity<Object> successResponse(HttpStatus status, Object data) {
-        GenericApiResponse<Object> response = new GenericApiResponse<>(true, data);
+    public static <T> ResponseEntity<GenericApiResponse<T>> successResponse(HttpStatus status, String message, T data) {
+        GenericApiResponse<T> response = new GenericApiResponse<>(true, message, data);
         return new ResponseEntity<>(response, status);
     }
 
-    public static ResponseEntity<Object> errorResponse(HttpStatus status, String errorMessage) {
-        GenericApiResponse<String> response = new GenericApiResponse<>(false, errorMessage);
+    // This method now correctly handles returning a message without specific data.
+    public static <T> ResponseEntity<GenericApiResponse<T>> errorResponse(HttpStatus status, String errorMessage) {
+        GenericApiResponse<T> response = new GenericApiResponse<>(false, errorMessage, null); // 'null' for no data
         return new ResponseEntity<>(response, status);
     }
 }

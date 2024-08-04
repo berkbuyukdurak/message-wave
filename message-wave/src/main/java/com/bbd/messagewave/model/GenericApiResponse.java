@@ -15,18 +15,18 @@ public class GenericApiResponse<T> {
     @Schema(description = "Holds the data if request was successful")
     private T data;
 
-    @Schema(description = "Error message if request failed")
-    private String errorMessage;
+    @Schema(description = "Message describing the success or error")
+    private String message;
 
     // Constructors for success and error scenarios
-    public GenericApiResponse(boolean status, T data) {
+    public GenericApiResponse(boolean status, String message, T data) {
         this.status = status;
+        this.message = message;
         this.data = data;
     }
 
-    public GenericApiResponse(boolean status, String errorMessage) {
+    public GenericApiResponse(boolean status, String message) {
         this.status = status;
-        this.errorMessage = errorMessage;
+        this.message = message;
     }
-
 }
