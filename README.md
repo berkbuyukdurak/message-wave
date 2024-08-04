@@ -72,3 +72,22 @@ To set up and run the MessageWave application, configure the application.propert
 ![Webhook XHR Redirection](images/webhook_redirect.png)
 
 ![Webhook Edit URL](images/webhook_edit_url.png)
+
+- Configure your webhook using the following payload and headers:
+```
+curl --location 'https://webhook.site/c3f13233-1ed4-429e-9649-8133b3b9c9cd' \
+--header 'Content-Type: application/json' \
+--header 'x-ins-auth-key: INS.me1x9uMcyYGlhKKQVPoc.bO3j9aZwRTOcA2Ywo' \
+--data '{
+  "to": "+905551111111",
+  "content": "Insider - Project"
+}'
+```
+
+Example response:
+```
+{
+  "message": "Accepted",
+  "messageId": "67f2f8a8-ea58-4ed0-a6f9-ff217df4d849"
+}
+```
