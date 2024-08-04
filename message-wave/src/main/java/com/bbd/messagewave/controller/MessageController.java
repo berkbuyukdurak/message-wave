@@ -12,7 +12,6 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.ErrorResponse;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -44,15 +43,15 @@ public class MessageController {
                             schema = @Schema(implementation = GenericApiResponse.class)))
     })
     @GetMapping
-    public ResponseEntity<Object> getAllMessages() {
+    public ResponseEntity<GenericApiResponse<List<GetAllMessagesResponseDTO>>> getAllMessages() {
         try {
             List<GetAllMessagesResponseDTO> messages = messageService.getAllMessages();
             if (messages.isEmpty()) {
                 return GenericResponseHandler.errorResponse(HttpStatus.NOT_FOUND, "Messages not found");
             }
-            return GenericResponseHandler.successResponse(HttpStatus.OK, messages);
+            return GenericResponseHandler.successResponse(HttpStatus.OK,"Successfully retrieved messages", messages);
         } catch (Exception e) {
-            return GenericResponseHandler.errorResponse(HttpStatus.INTERNAL_SERVER_ERROR, e.getMessage());
+            return GenericResponseHandler.errorResponse(HttpStatus.INTERNAL_SERVER_ERROR, "Internal server error: " + e.getMessage());
         }
     }
 }
