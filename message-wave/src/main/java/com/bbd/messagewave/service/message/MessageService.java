@@ -28,6 +28,8 @@ public class MessageService {
     @Value("${messagewave.redis.key.sentMessagePrefix}")
     private String sentMessagePrefix;
 
+    public static final int MAX_MESSAGE_CONTENT_LENGTH = 512;
+
     public MessageService(MessageRepository messageRepository, RedisService redisService, ObjectMapper objectMapper) {
         this.messageRepository = messageRepository;
         this.redisService = redisService;
@@ -35,6 +37,10 @@ public class MessageService {
     }
 
     public SendMessageResponseDTO createMessage(SendMessageRequestDTO request) {
+        if (request.getContent().length() > MAX_MESSAGE_CONTENT_LENGTH) {
+            throw new IllegalArgumentException("Message content exceeds the maximum allowed length of 512 characters.");
+        }
+
         Message message = new Message();
         message.setContent(request.getContent());
         message.setRecipientPhoneNumber(request.getRecipientPhoneNumber());
@@ -44,6 +50,10 @@ public class MessageService {
     }
 
     public SendMessageResponseDTO createMessageFromWebhook(WebhookRequestDTO request) {
+        if (request.getContent().length() > MAX_MESSAGE_CONTENT_LENGTH) {
+            throw new IllegalArgumentException("Message content exceeds the maximum allowed length of 512 characters.");
+        }
+
         Message message = new Message();
         message.setContent(request.getContent());
         message.setRecipientPhoneNumber(request.getTo());
