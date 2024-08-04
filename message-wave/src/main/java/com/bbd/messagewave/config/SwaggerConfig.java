@@ -21,7 +21,10 @@ public class SwaggerConfig {
     @Bean
     OpenAPI customOpenAPI() {
         return new OpenAPI()
-                .components(new Components())
-                .info(new Info().title("MessageWave API Docs").version("v1"));
+                .info(new Info()
+                        .title("MessageWave API Docs")
+                        .version("v1")
+                        .description("API documentation for Message Wave application")
+                );
     }
 }
