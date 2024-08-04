@@ -50,7 +50,7 @@ public class WebhookController {
 
         try {
             SendMessageResponseDTO response = messageService.createMessageFromWebhook(payload);
-            return new ResponseEntity<>(response, HttpStatus.CREATED);
+            return new ResponseEntity<>(response, HttpStatus.ACCEPTED);
         } catch (Exception e) {
             SendMessageResponseDTO errorResponse = new SendMessageResponseDTO("Failed to create message: " + e.getMessage(), null);
             return new ResponseEntity<>(errorResponse, HttpStatus.INTERNAL_SERVER_ERROR);
