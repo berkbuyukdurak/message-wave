@@ -23,11 +23,6 @@ through RabbitMQ.
 - **Redis:** For caching message delivery statuses to enhance performance.
 - **Docker:** For containerizing the application and dependencies, ensuring consistency across environments.
 
-## Techical Details
-
-
-
-
 ## Architecture Overview
 The system architecture consists of three main components:
 1. **Application Core:** The Spring Boot application handles all business logic, including interaction with the database, queuing messages via RabbitMQ, and caching with Redis.
@@ -52,8 +47,7 @@ Access management panels for PostgreSQL, RabbitMQ, and Redis as follows:
 - **Redis:** Redis does not have a management panel, but you can check the connection using the Redis CLI.
 
 ## API Documentation
-Please see http
-
+Please see http://localhost:8080/swagger-ui/index.html
 
 ## Configuration
 To set up and run the MessageWave application, configure the application.properties file with your parameters.
