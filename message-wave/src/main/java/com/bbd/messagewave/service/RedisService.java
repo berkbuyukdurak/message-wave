@@ -3,6 +3,8 @@ package com.bbd.messagewave.service;
 import org.springframework.stereotype.Service;
 import redis.clients.jedis.Jedis;
 
+import java.util.Set;
+
 @Service
 public class RedisService {
     private final Jedis jedis;
@@ -27,5 +29,9 @@ public class RedisService {
      */
     public String getValue(String key) {
         return jedis.get(key);
+    }
+
+    public Set<String> getKeys(String pattern) {
+        return jedis.keys(pattern);
     }
 }
