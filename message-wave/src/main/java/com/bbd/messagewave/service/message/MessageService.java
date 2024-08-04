@@ -1,7 +1,10 @@
 package com.bbd.messagewave.service.message;
 
+import com.bbd.messagewave.constants.MessageSendingStatus;
+import com.bbd.messagewave.model.dto.message.request.SendMessageRequestDTO;
 import com.bbd.messagewave.model.dto.message.response.GetAllMessagesResponseDTO;
 import com.bbd.messagewave.model.dto.message.response.GetAllSentMessagesResponseDTO;
+import com.bbd.messagewave.model.dto.message.response.SendMessageResponseDTO;
 import com.bbd.messagewave.model.entity.Message;
 import com.bbd.messagewave.repository.MessageRepository;
 import com.bbd.messagewave.service.RedisService;
@@ -28,6 +31,15 @@ public class MessageService {
         this.messageRepository = messageRepository;
         this.redisService = redisService;
         this.objectMapper = objectMapper;
+    }
+
+    public SendMessageResponseDTO createMessage(SendMessageRequestDTO request) {
+        Message message = new Message();
+        message.setContent(request.getContent());
+        message.setRecipientPhoneNumber(request.getRecipientPhoneNumber());
+        message.setSendingStatus(MessageSendingStatus.PENDING);
+        message = messageRepository.save(message);
+        return new SendMessageResponseDTO("Accepted", message.getId().toString());
     }
 
     public List<GetAllMessagesResponseDTO> getAllMessages() {
