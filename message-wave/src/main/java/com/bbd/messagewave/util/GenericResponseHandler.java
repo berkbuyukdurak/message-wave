@@ -1,25 +1,17 @@
 package com.bbd.messagewave.util;
 
+import com.bbd.messagewave.model.GenericApiResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
-import java.util.HashMap;
-import java.util.Map;
-
 public class GenericResponseHandler {
     public static ResponseEntity<Object> successResponse(HttpStatus status, Object data) {
-        Map<String, Object> result = new HashMap<>();
-
-        result.put("status", Boolean.TRUE);
-        result.put("data", data);
-        return new ResponseEntity<>(result, status);
+        GenericApiResponse<Object> response = new GenericApiResponse<>(true, data);
+        return new ResponseEntity<>(response, status);
     }
 
     public static ResponseEntity<Object> errorResponse(HttpStatus status, String errorMessage) {
-        Map<String, Object> result = new HashMap<>();
-
-        result.put("status", Boolean.FALSE);
-        result.put("errorMessage", errorMessage);
-        return new ResponseEntity<>(result, status);
+        GenericApiResponse<String> response = new GenericApiResponse<>(false, errorMessage);
+        return new ResponseEntity<>(response, status);
     }
 }
